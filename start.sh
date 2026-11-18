@@ -60,7 +60,7 @@ bootstrap() {
   err=/tmp/comentario-signup.err
   printf '{"email":"%s","name":"Admin","password":"%s"}' "$admin_email" "$admin_pass" >"$req"
   if out=$(wget -O - -T 30 --header 'Content-Type: application/json' --post-file "$req" \
-      "http://127.0.0.1:${BOOT_PORT}/api/auth/signup" 2>"$err"); then
+      "http://127.0.0.1:${BOOT_PORT}/api/auth/profile" 2>"$err"); then
     case "$out" in
       *'"isSuperuser":true'*) log "created the superuser account $admin_email" ;;
       *) log "WARNING: other accounts already existed, so $admin_email was created as a regular account. Remove ADMIN_EMAIL if your admin uses another email now." ;;
